@@ -12,7 +12,7 @@ import com.cloudcontact.cloudcontact.R;
 
 
 public class ContactTab extends Fragment {
-
+    RecyclerView recyclerView;
     /**
      * This is a method for Fragment.
      * You can do the same in onCreate or onRestoreInstanceState
@@ -22,6 +22,8 @@ public class ContactTab extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.contact_tab, container, false);
+        recyclerView = (RecyclerView) layout.findViewById(R.id.contactList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         return layout;
     }
 

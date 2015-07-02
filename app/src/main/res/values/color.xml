@@ -5,6 +5,6 @@
     <color name="accent_pressed">#ec407a</color>
     <color name="blue_semi_transparent">#805677fc</color>
     <color name="blue_semi_transparent_pressed">#80738ffe</color>
-    <color name="primaryColor">#03A9F4</color>
-    <color name="primaryDark">#0288D1</color>
+    <color name="primaryColor">#009688</color>
+    <color name="primaryDark">#00796B</color>
 </resources>
