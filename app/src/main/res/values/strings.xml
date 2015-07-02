@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Cloud Contact</string>
+
+    <string name="action_about">About</string>
+    <string name="action_refresh">Update</string>
+    <string name="Search">Search</string>
+</resources>

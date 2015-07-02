@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <color name="accentColor">#f50057</color>
+    <color name="accent_pressed">#ec407a</color>
+    <color name="blue_semi_transparent">#805677fc</color>
+    <color name="blue_semi_transparent_pressed">#80738ffe</color>
+    <color name="primaryColor">#2196F3</color>
+    <color name="primaryDark">#1976D2</color>
+</resources>
