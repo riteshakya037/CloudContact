@@ -24,9 +24,9 @@ public class ContactTab extends Fragment {
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.contact_tab, container, false);
         recyclerView = (RecyclerView) layout.findViewById(R.id.contactList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         displayAdapter = new ContactListDisplay(getActivity());
         recyclerView.setAdapter(displayAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         return layout;
     }
 

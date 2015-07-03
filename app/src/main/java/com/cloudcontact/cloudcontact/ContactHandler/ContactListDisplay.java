@@ -2,37 +2,19 @@ package com.cloudcontact.cloudcontact.ContactHandler;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
-import android.content.res.Resources;
-import android.net.Uri;
-import android.os.Environment;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageButton;
-import android.widget.PopupMenu;
-import android.widget.PopupMenu.OnMenuItemClickListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cloudcontact.cloudcontact.R;
 import com.parse.FindCallback;
-import com.parse.GetCallback;
-import com.parse.GetDataCallback;
 import com.parse.ParseException;
-import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +31,7 @@ public class ContactListDisplay extends RecyclerView.Adapter<ContactListDisplay.
         inflator = LayoutInflater.from(c);
         cardList = new ArrayList<>();
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Contacts");
-        query.orderByDescending("name");
+        query.orderByAscending("name");
         final ProgressDialog dlg = new ProgressDialog(c);
         dlg.setTitle("Please wait.");
         dlg.setMessage("Loading Data");
@@ -61,7 +43,7 @@ public class ContactListDisplay extends RecyclerView.Adapter<ContactListDisplay.
                                        if (e == null) {
                                            cardList.clear();
                                            for (ParseObject post : parseObjects) {
-                                               singleCard note = new singleCard(post.getString("name"));
+                                               singleCard note = new singleCard(post.getString("name"),post.getString("phone_no"));
                                                cardList.add(note);
                                            }
                                            notifyDataSetChanged();
@@ -86,7 +68,8 @@ public class ContactListDisplay extends RecyclerView.Adapter<ContactListDisplay.
 
     @Override
     public void onBindViewHolder(final ContactsViewHolder holder, int position) {
-        holder.title.setText(cardList.get(position).getTitle());
+        holder.name.setText(cardList.get(position).getName());
+        holder.ph_no.setText(cardList.get(position).getPh_no());
     }
 
     @Override
@@ -101,22 +84,28 @@ public class ContactListDisplay extends RecyclerView.Adapter<ContactListDisplay.
 
 
 
-    class ContactsViewHolder extends RecyclerView.ViewHolder{
-        TextView title;
+    class ContactsViewHolder extends RecyclerView.ViewHolder {
+        TextView name, ph_no;
         public ContactsViewHolder(View itemView) {
             super(itemView);
-            title = (TextView) itemView.findViewById(R.id.txtTitle);
+            name = (TextView) itemView.findViewById(R.id.txtTitle);
+            ph_no = (TextView) itemView.findViewById(R.id.ph_no);
         }
     }
 
 }
 
 class singleCard{
-    String title;
-    public String getTitle() {
-        return title;
+    String name;
+    String ph_no;
+    public String getName() {
+        return name;
     }
-    public singleCard(String title) {
-        this.title = title;
+    public String getPh_no() {
+        return ph_no;
+    }
+    public singleCard(String name, String ph_no) {
+        this.name = name;
+        this.ph_no = ph_no;
     }
 }
