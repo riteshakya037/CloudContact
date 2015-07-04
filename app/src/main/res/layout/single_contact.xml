@@ -21,7 +21,7 @@
             android:layout_alignParentStart="true"
             android:fontFamily="sans-serif-thin"
             android:singleLine="true"
-            android:text="Name"
+            android:text="@string/name"
             android:paddingRight="5dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@android:color/black"
@@ -36,23 +36,23 @@
             android:layout_alignStart="@+id/txtTitle"
             android:layout_below="@id/txtTitle"
             android:fontFamily="sans-serif-thin"
-            android:text="Phone Number"
+            android:text="@string/phone_no"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="15sp" />
 
 
     </RelativeLayout>
 
-    <View
-        android:id="@+id/separator"
-        android:layout_width="fill_parent"
-        android:layout_height="2dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentStart="true"
-        android:background="@android:color/darker_gray"
-        android:visibility="visible" />
+    <!--<View-->
+        <!--android:id="@+id/separator"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="2dp"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:background="@android:color/darker_gray"-->
+        <!--android:visibility="visible" />-->
 
 </RelativeLayout>
