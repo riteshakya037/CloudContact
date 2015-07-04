@@ -1,58 +1,69 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<com.balysv.materialripple.MaterialRippleLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/feedbackRipple"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    app:mrl_rippleColor="@color/accentColor"
+    app:mrl_rippleDuration="350"
+    app:mrl_rippleFadeDuration="75"
+    app:mrl_rippleHover="true"
+    app:mrl_rippleOverlay="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="72dp"
         android:layout_alignParentTop="true"
-        android:background="#fff"
-        android:paddingBottom="10dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="10dp">
+        android:background="@android:color/white">
 
         <TextView
-            android:id="@+id/txtTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
+            android:id="@+id/groupLetter"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:fontFamily="sans-serif-thin"
-            android:singleLine="true"
-            android:text="@string/name"
-            android:paddingRight="5dp"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@android:color/black"
-            android:textSize="24sp"
-           />
+            android:layout_margin="16dp"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/accentColor"
+            android:textSize="@dimen/abc_text_size_large_material" />
 
-        <TextView
-            android:id="@+id/ph_no"
-            android:layout_width="80dp"
-            android:layout_height="20dp"
-            android:layout_alignLeft="@id/txtTitle"
-            android:layout_alignStart="@+id/txtTitle"
-            android:layout_below="@id/txtTitle"
-            android:fontFamily="sans-serif-thin"
-            android:text="@string/phone_no"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="15sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/groupLetter"
+            android:orientation="vertical">
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:id="@+id/txtTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="16dp"
+                android:singleLine="true"
+                android:text="@string/name"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/ph_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="16dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:text="@string/phone_no"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="14sp" />
+        </LinearLayout>
 
 
     </RelativeLayout>
+</com.balysv.materialripple.MaterialRippleLayout>
 
-    <!--<View-->
-        <!--android:id="@+id/separator"-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="2dp"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:layout_alignParentEnd="true"-->
-        <!--android:layout_alignParentLeft="true"-->
-        <!--android:layout_alignParentRight="true"-->
-        <!--android:layout_alignParentStart="true"-->
-        <!--android:background="@android:color/darker_gray"-->
-        <!--android:visibility="visible" />-->
-
-</RelativeLayout>

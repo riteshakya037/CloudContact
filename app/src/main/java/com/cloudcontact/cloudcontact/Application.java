@@ -1,5 +1,6 @@
 package com.cloudcontact.cloudcontact;
 
+import com.cloudcontact.cloudcontact.Parse.ParseHandler;
 import com.parse.Parse;
 
 /**
@@ -9,7 +10,7 @@ public class Application extends android.app.Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Parse.initialize(this, "Vae4j5Ev1cehvXThm3LaZyp38gtrjZeWU1NeqcrV", "FEsgiSRzTevjX8FVI9LltRDGrE6qEzQJl4BKXJ6m");
+        Parse.initialize(this, ParseHandler.applicationID, ParseHandler.client_id);
 
     }
 }

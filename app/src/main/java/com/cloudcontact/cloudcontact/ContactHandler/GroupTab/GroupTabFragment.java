@@ -1,4 +1,4 @@
-package com.cloudcontact.cloudcontact.ContactHandler;
+package com.cloudcontact.cloudcontact.ContactHandler.GroupTab;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,8 +11,9 @@ import android.view.ViewGroup;
 import com.cloudcontact.cloudcontact.R;
 
 
-public class GroupTab extends Fragment {
+public class GroupTabFragment extends Fragment {
     RecyclerView recyclerView;
+    GroupListDisplay displayAdapter;
 
     /**
      * This is a method for Fragment.
@@ -24,6 +25,8 @@ public class GroupTab extends Fragment {
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.group_tab, container, false);
         recyclerView = (RecyclerView) layout.findViewById(R.id.contactList);
+        displayAdapter = new GroupListDisplay(getActivity());
+        recyclerView.setAdapter(displayAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         return layout;
     }

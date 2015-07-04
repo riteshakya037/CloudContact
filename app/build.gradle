@@ -26,4 +26,6 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:22.0.0'
     compile 'com.balysv:material-ripple:1.0.1'
     compile 'com.parse.bolts:bolts-android:1.+'
+    compile 'xyz.danoz:recyclerviewfastscroller:0.1.3'
+
 }

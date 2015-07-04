@@ -6,13 +6,20 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
+import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.cloudcontact.cloudcontact.ContactHandler.ContactFragment;
+import com.cloudcontact.cloudcontact.ContactHandler.ContactTab.ContactTabFragment;
 
 public class MainActivity extends ActionBarActivity {
     Toolbar toolbar;
     private ContactFragment contactFragment;
+    FrameLayout layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +27,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         //Initializing Toolbar
         toolbar = (Toolbar) findViewById(R.id.appBar);
+        layout = (FrameLayout) findViewById(R.id.fragContainer);
         setSupportActionBar(toolbar);
         contactFragment = new ContactFragment();
         getSupportFragmentManager().beginTransaction()
@@ -49,5 +57,19 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void hideToolBar(int dy) {
+        if (toolbar.getTranslationY() < toolbar.getHeight() && toolbar.getTranslationY() > 0) {
+            toolbar.animate().translationY(-dy).setInterpolator(new AccelerateInterpolator(2));
+            layout.animate().translationY(-dy).setInterpolator(new AccelerateInterpolator(2));
+        }
+    }
+
+    public void showToolBar(int dy) {
+        if (toolbar.getTranslationY() > toolbar.getHeight() && toolbar.getTranslationY() < 0) {
+            toolbar.animate().translationY(dy).setInterpolator(new DecelerateInterpolator(2));
+            layout.animate().translationY(dy).setInterpolator(new DecelerateInterpolator(2));
+        }
     }
 }
