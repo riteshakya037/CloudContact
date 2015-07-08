@@ -13,14 +13,13 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
+import com.cloudcontact.cloudcontact.MainActivity;
 import com.cloudcontact.cloudcontact.R;
 
 import static android.support.v7.widget.RecyclerView.OnScrollListener;
@@ -34,7 +33,7 @@ public class FastScroller extends LinearLayout {
     private RecyclerView recyclerView;
     private final ScrollListener scrollListener = new ScrollListener();
     private int height;
-
+    Context context;
     private ObjectAnimator currentAnimator = null;
 
     public FastScroller(final Context context, final AttributeSet attrs, final int defStyleAttr) {
@@ -55,6 +54,7 @@ public class FastScroller extends LinearLayout {
     private void initialise(Context context) {
         setOrientation(HORIZONTAL);
         setClipChildren(false);
+        this.context = context;
         LayoutInflater inflater = LayoutInflater.from(context);
         inflater.inflate(R.layout.recycler_view_fast_scroller__fast_scroller, this, true);
         bubble = (TextView) findViewById(R.id.fastscroller_bubble);
@@ -162,6 +162,10 @@ public class FastScroller extends LinearLayout {
     }
 
     private class ScrollListener extends OnScrollListener {
+        private final int HIDE_THRESHOLD  =100;
+        private int scrolledDistance = 0;
+        private boolean controlsVisible = true;
+
         @Override
         public void onScrolled(RecyclerView rv, int dx, int dy) {
 
@@ -179,6 +183,20 @@ public class FastScroller extends LinearLayout {
                 position = (int) (((float) firstVisiblePosition / (((float) itemCount - (float) visibleRange))) * (float) itemCount);
             float proportion = (float) position / (float) itemCount;
             setBubbleAndHandlePosition(height * proportion);
+
+            if (scrolledDistance > HIDE_THRESHOLD && controlsVisible) {
+                ((MainActivity)context).hideToolBar(scrolledDistance);
+                controlsVisible = false;
+                scrolledDistance = 0;
+            } else if (scrolledDistance < -HIDE_THRESHOLD && !controlsVisible) {
+                ((MainActivity)context).showToolBar(scrolledDistance);
+                controlsVisible = true;
+                scrolledDistance = 0;
+            }
+
+            if ((controlsVisible && dy > 0) || (!controlsVisible && dy < 0)) {
+                scrolledDistance += dy;
+            }
         }
     }
 }

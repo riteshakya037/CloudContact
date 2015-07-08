@@ -64,17 +64,13 @@ public class MainActivity extends ActionBarActivity implements BottomSheetCallba
     }
 
     public void hideToolBar(int dy) {
-        if (toolbar.getTranslationY() < toolbar.getHeight() && toolbar.getTranslationY() > 0) {
-            toolbar.animate().translationY(-dy).setInterpolator(new AccelerateInterpolator(2));
-            fragContainer.animate().translationY(-dy).setInterpolator(new AccelerateInterpolator(2));
-        }
+        toolbar.animate().translationY(-toolbar.getHeight()).setInterpolator(new AccelerateInterpolator(2));
+        fragContainer.animate().translationY(0).setInterpolator(new AccelerateInterpolator(2));
     }
 
     public void showToolBar(int dy) {
-        if (toolbar.getTranslationY() > toolbar.getHeight() && toolbar.getTranslationY() < 0) {
-            toolbar.animate().translationY(dy).setInterpolator(new DecelerateInterpolator(2));
-            fragContainer.animate().translationY(dy).setInterpolator(new DecelerateInterpolator(2));
-        }
+        fragContainer.animate().translationY(toolbar.getHeight()).setInterpolator(new DecelerateInterpolator(2));
+        toolbar.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2));
     }
 
     @Override
@@ -82,4 +78,6 @@ public class MainActivity extends ActionBarActivity implements BottomSheetCallba
         BottomSheet bottomSheet = new BottomSheet(this, parseRow);
         bottomSheet.show();
     }
+
+
 }

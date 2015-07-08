@@ -4,14 +4,15 @@
     android:layout_height="match_parent"
     tools:context="com.awesome_folks.awesome_education.MainActivity">
 
-    <include
-        android:id="@+id/appBar"
-        layout="@layout/app_bar" />
 
     <FrameLayout
         android:id="@+id/fragContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="?android:actionBarSize" />
+        android:translationY="?attr/actionBarSize" />
+
+    <include
+        android:id="@+id/appBar"
+        layout="@layout/app_bar" />
 
 </RelativeLayout>
