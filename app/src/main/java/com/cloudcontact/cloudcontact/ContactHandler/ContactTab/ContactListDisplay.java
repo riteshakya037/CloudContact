@@ -5,12 +5,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.cloudcontact.cloudcontact.ContactHandler.BubbleTextGetter;
-import com.cloudcontact.cloudcontact.ContactHandler.ContactSingleCard;
+import com.cloudcontact.cloudcontact.BottomSheet.BottomSheetCallback;
+import com.cloudcontact.cloudcontact.FastScroller.BubbleTextGetter;
+import com.cloudcontact.cloudcontact.MainActivity;
 import com.cloudcontact.cloudcontact.Parse.ContactTable;
 import com.cloudcontact.cloudcontact.Parse.ParseHandler;
+import com.cloudcontact.cloudcontact.Parse.ParseRow;
 import com.cloudcontact.cloudcontact.R;
 
 import java.util.ArrayList;
@@ -20,13 +23,13 @@ import java.util.ArrayList;
  */
 public class ContactListDisplay extends RecyclerView.Adapter<ContactListDisplay.ContactsViewHolder> implements BubbleTextGetter {
     private final LayoutInflater inflator;
-    ArrayList<ContactSingleCard> cardList;
+    ArrayList<ParseRow> cardList;
     Context context;
-    String groupCheck = null;
-    boolean once;
+    BottomSheetCallback callback;
 
     ContactListDisplay(final Context context) {
         this.context = context;
+        this.callback=((BottomSheetCallback)context);
         inflator = LayoutInflater.from(context);
         cardList = new ArrayList<>();
         ParseHandler parseHandler = new ParseHandler();
@@ -41,18 +44,24 @@ public class ContactListDisplay extends RecyclerView.Adapter<ContactListDisplay.
     }
 
     @Override
-    public void onBindViewHolder(final ContactsViewHolder holder, int position) {
+    public void onBindViewHolder(final ContactsViewHolder holder, final int position) {
         holder.name.setText(cardList.get(position).getName());
-        holder.ph_no.setText(cardList.get(position).getPh_no());
+        holder.ph_no.setText(cardList.get(position).getPhone_no()[0]);
         if (position == 0 ||
                 !cardList.get(position).getGroupLetter().equals(cardList.get(position - 1).getGroupLetter())) {
             holder.groupLetter.setText(cardList.get(position).getGroupLetter());
-            groupCheck = cardList.get(position).getGroupLetter();
             holder.divider.setVisibility(View.VISIBLE);
         } else {
             holder.divider.setVisibility(View.GONE);
             holder.groupLetter.setText("");
         }
+        holder.single_card.setOnClickListener(new View.OnClickListener() {
+            @Override //Call method on mainActivity to show BottomSheet
+            public void onClick(View view) {
+                if (context instanceof MainActivity)
+                    callback.showBottomSheet(cardList.get(position));
+            }
+        });
     }
 
     @Override
@@ -76,6 +85,7 @@ public class ContactListDisplay extends RecyclerView.Adapter<ContactListDisplay.
     class ContactsViewHolder extends RecyclerView.ViewHolder {
         TextView name, ph_no, groupLetter;
         View divider;
+        RelativeLayout single_card;
 
         public ContactsViewHolder(View itemView) {
             super(itemView);
@@ -83,6 +93,7 @@ public class ContactListDisplay extends RecyclerView.Adapter<ContactListDisplay.
             ph_no = (TextView) itemView.findViewById(R.id.ph_no);
             groupLetter = (TextView) itemView.findViewById(R.id.groupLetter);
             divider = itemView.findViewById(R.id.divider);
+            single_card = (RelativeLayout) itemView.findViewById(R.id.sinlgeContact);
         }
     }
 

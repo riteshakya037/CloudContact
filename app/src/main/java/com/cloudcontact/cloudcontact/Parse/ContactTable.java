@@ -2,6 +2,7 @@ package com.cloudcontact.cloudcontact.Parse;
 
 /**
  * Created by Ritesh on 7/4/2015.
+ * Contains all the columns along with their dislpay names
  */
 public enum ContactTable {
     CREATED_AT("createdAt"),
@@ -24,7 +25,6 @@ public enum ContactTable {
     public String getFieldName() {
         return fieldName;
     }
-
 
 
 }

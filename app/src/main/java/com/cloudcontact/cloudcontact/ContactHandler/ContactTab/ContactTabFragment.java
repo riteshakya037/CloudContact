@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.cloudcontact.cloudcontact.ContactHandler.FastScroller;
+import com.cloudcontact.cloudcontact.FastScroller.FastScroller;
 import com.cloudcontact.cloudcontact.R;
 
 

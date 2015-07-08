@@ -7,9 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.cloudcontact.cloudcontact.ContactHandler.ContactSingleCard;
 import com.cloudcontact.cloudcontact.Parse.ContactTable;
 import com.cloudcontact.cloudcontact.Parse.ParseHandler;
+import com.cloudcontact.cloudcontact.Parse.ParseRow;
 import com.cloudcontact.cloudcontact.R;
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
  */
 public class GroupListDisplay extends RecyclerView.Adapter<GroupListDisplay.ContactsViewHolder> {
     private final LayoutInflater inflator;
-    ArrayList<ContactSingleCard> cardList;
+    ArrayList<ParseRow> cardList;
     Context context;
 
     GroupListDisplay(final Context context) {
@@ -40,7 +40,7 @@ public class GroupListDisplay extends RecyclerView.Adapter<GroupListDisplay.Cont
     @Override
     public void onBindViewHolder(final ContactsViewHolder holder, int position) {
         holder.name.setText(cardList.get(position).getName());
-        holder.ph_no.setText(cardList.get(position).getPh_no());
+        holder.ph_no.setText(cardList.get(position).getPhone_no()[0]);
     }
 
     @Override

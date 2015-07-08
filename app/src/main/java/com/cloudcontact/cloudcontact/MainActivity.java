@@ -1,25 +1,29 @@
 package com.cloudcontact.cloudcontact;
 
 import android.app.FragmentTransaction;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
-import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.cloudcontact.cloudcontact.BottomSheet.BottomSheet;
+import com.cloudcontact.cloudcontact.BottomSheet.BottomSheetCallback;
 import com.cloudcontact.cloudcontact.ContactHandler.ContactFragment;
-import com.cloudcontact.cloudcontact.ContactHandler.ContactTab.ContactTabFragment;
+import com.cloudcontact.cloudcontact.Parse.ParseRow;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements BottomSheetCallback {
     Toolbar toolbar;
     private ContactFragment contactFragment;
-    FrameLayout layout;
+    View fragContainer, bottomSheetView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +31,10 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         //Initializing Toolbar
         toolbar = (Toolbar) findViewById(R.id.appBar);
-        layout = (FrameLayout) findViewById(R.id.fragContainer);
+        fragContainer = findViewById(R.id.fragContainer);
         setSupportActionBar(toolbar);
+
+        //initialize first fragment
         contactFragment = new ContactFragment();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragContainer, contactFragment, "Contact").setTransition(FragmentTransaction.TRANSIT_ENTER_MASK)
@@ -39,8 +45,6 @@ public class MainActivity extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        getMenuInflater().inflate(R.menu.search, menu);
-
         return true;
     }
 
@@ -62,14 +66,20 @@ public class MainActivity extends ActionBarActivity {
     public void hideToolBar(int dy) {
         if (toolbar.getTranslationY() < toolbar.getHeight() && toolbar.getTranslationY() > 0) {
             toolbar.animate().translationY(-dy).setInterpolator(new AccelerateInterpolator(2));
-            layout.animate().translationY(-dy).setInterpolator(new AccelerateInterpolator(2));
+            fragContainer.animate().translationY(-dy).setInterpolator(new AccelerateInterpolator(2));
         }
     }
 
     public void showToolBar(int dy) {
         if (toolbar.getTranslationY() > toolbar.getHeight() && toolbar.getTranslationY() < 0) {
             toolbar.animate().translationY(dy).setInterpolator(new DecelerateInterpolator(2));
-            layout.animate().translationY(dy).setInterpolator(new DecelerateInterpolator(2));
+            fragContainer.animate().translationY(dy).setInterpolator(new DecelerateInterpolator(2));
         }
+    }
+
+    @Override
+    public void showBottomSheet(ParseRow parseRow) {
+        BottomSheet bottomSheet = new BottomSheet(this, parseRow);
+        bottomSheet.show();
     }
 }
