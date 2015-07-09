@@ -24,6 +24,7 @@ public class MainActivity extends ActionBarActivity implements BottomSheetCallba
     Toolbar toolbar;
     private ContactFragment contactFragment;
     View fragContainer, bottomSheetView;
+    BottomSheet bottomSheet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,8 +76,10 @@ public class MainActivity extends ActionBarActivity implements BottomSheetCallba
 
     @Override
     public void showBottomSheet(ParseRow parseRow) {
-        BottomSheet bottomSheet = new BottomSheet(this, parseRow);
-        bottomSheet.show();
+        if (bottomSheet == null)
+            bottomSheet = new BottomSheet(this, parseRow);
+        else if (!bottomSheet.isShowing())
+            bottomSheet.show();
     }
 
 
