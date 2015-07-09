@@ -183,20 +183,20 @@ public class FastScroller extends LinearLayout {
                 position = (int) (((float) firstVisiblePosition / (((float) itemCount - (float) visibleRange))) * (float) itemCount);
             float proportion = (float) position / (float) itemCount;
             setBubbleAndHandlePosition(height * proportion);
-
-            if (scrolledDistance > HIDE_THRESHOLD && controlsVisible) {
-                ((MainActivity)context).hideToolBar(scrolledDistance);
-                controlsVisible = false;
-                scrolledDistance = 0;
-            } else if (scrolledDistance < -HIDE_THRESHOLD && !controlsVisible) {
-                ((MainActivity)context).showToolBar(scrolledDistance);
-                controlsVisible = true;
-                scrolledDistance = 0;
-            }
-
-            if ((controlsVisible && dy > 0) || (!controlsVisible && dy < 0)) {
-                scrolledDistance += dy;
-            }
+//
+//            if (scrolledDistance > HIDE_THRESHOLD && controlsVisible) {
+//                ((MainActivity)context).hideToolBar(scrolledDistance);
+//                controlsVisible = false;
+//                scrolledDistance = 0;
+//            } else if (scrolledDistance < -HIDE_THRESHOLD && !controlsVisible) {
+//                ((MainActivity)context).showToolBar(scrolledDistance);
+//                controlsVisible = true;
+//                scrolledDistance = 0;
+//            }
+//
+//            if ((controlsVisible && dy > 0) || (!controlsVisible && dy < 0)) {
+//                scrolledDistance += dy;
+//            }
         }
     }
 }

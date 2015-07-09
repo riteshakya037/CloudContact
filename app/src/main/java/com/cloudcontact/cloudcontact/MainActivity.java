@@ -63,16 +63,16 @@ public class MainActivity extends ActionBarActivity implements BottomSheetCallba
 
         return super.onOptionsItemSelected(item);
     }
-
-    public void hideToolBar(int dy) {
-        toolbar.animate().translationY(-toolbar.getHeight()).setInterpolator(new AccelerateInterpolator(2));
-        fragContainer.animate().translationY(0).setInterpolator(new AccelerateInterpolator(2));
-    }
-
-    public void showToolBar(int dy) {
-        fragContainer.animate().translationY(toolbar.getHeight()).setInterpolator(new DecelerateInterpolator(2));
-        toolbar.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2));
-    }
+//
+//    public void hideToolBar(int dy) {
+//        toolbar.animate().translationY(-toolbar.getHeight()).setInterpolator(new AccelerateInterpolator(2));
+//        fragContainer.animate().translationY(0).setInterpolator(new AccelerateInterpolator(2));
+//    }
+//
+//    public void showToolBar(int dy) {
+//        fragContainer.animate().translationY(toolbar.getHeight()).setInterpolator(new DecelerateInterpolator(2));
+//        toolbar.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2));
+//    }
 
     @Override
     public void showBottomSheet(ParseRow parseRow) {
