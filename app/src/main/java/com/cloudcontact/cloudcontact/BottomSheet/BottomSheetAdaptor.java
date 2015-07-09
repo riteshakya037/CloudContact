@@ -129,7 +129,7 @@ public class BottomSheetAdaptor extends RecyclerView.Adapter<BottomSheetAdaptor.
                 String to = hashMapArray.getValue();
                 i.putExtra(Intent.EXTRA_EMAIL, to);
                 i.setType("message/rfc822");
-                Intent chooser = Intent.createChooser(i, "Call using");
+                Intent chooser = Intent.createChooser(i, "Send Email Through");
                 context.startActivity(chooser);
                 break;
             case EMERGENCY_NO:
@@ -137,7 +137,7 @@ public class BottomSheetAdaptor extends RecyclerView.Adapter<BottomSheetAdaptor.
             case PHONE_NO:
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
                 callIntent.setData(Uri.parse("tel:" + hashMapArray.getValue().trim()));
-                Intent chooser1 = Intent.createChooser(callIntent, "Send Email Through");
+                Intent chooser1 = Intent.createChooser(callIntent, "Call Using");
                 context.startActivity(chooser1);
                 break;
         }
