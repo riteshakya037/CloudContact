@@ -7,4 +7,14 @@
     <color name="blue_semi_transparent_pressed">#80738ffe</color>
     <color name="primaryColor">#009688</color>
     <color name="primaryDark">#00796B</color>
+    <color name="fast_scroller_color">@color/accentColor</color>
+
+    <!-- card colors -->
+    <color name="card_background">#ffffff</color>
+    <color name="card_shadow_1">#d4d4d4</color>
+    <color name="card_shadow_2">#dddddd</color>
+    <color name="card_detailing">#eee</color>
+    <color name="black_overlay">#66000000</color>
+
+    <color name="rippleColor">@color/ripple_material_light</color>
 </resources>
