@@ -1,4 +1,4 @@
-package com.cloudcontact.cloudcontact.ContactHandler;
+package com.cloudcontact.cloudcontact.ContactHandler.ContactTab;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,11 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.cloudcontact.cloudcontact.FastScroller.FastScroller;
 import com.cloudcontact.cloudcontact.R;
 
 
-public class ContactTab extends Fragment {
+public class ContactTabFragment extends Fragment {
     RecyclerView recyclerView;
+    ContactListDisplay displayAdapter;
+    FastScroller fastScroller;
+
     /**
      * This is a method for Fragment.
      * You can do the same in onCreate or onRestoreInstanceState
@@ -23,7 +27,11 @@ public class ContactTab extends Fragment {
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.contact_tab, container, false);
         recyclerView = (RecyclerView) layout.findViewById(R.id.contactList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        displayAdapter = new ContactListDisplay(getActivity());
+        recyclerView.setAdapter(displayAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+        fastScroller = (FastScroller) layout.findViewById(R.id.fastscroller);
+        fastScroller.setRecyclerView(recyclerView);
         return layout;
     }
 

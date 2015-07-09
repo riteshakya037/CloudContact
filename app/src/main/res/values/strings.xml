@@ -4,4 +4,6 @@
     <string name="action_about">About</string>
     <string name="action_refresh">Update</string>
     <string name="Search">Search</string>
+    <string name="name">Name</string>
+    <string name="phone_no">Phone Number</string>
 </resources>

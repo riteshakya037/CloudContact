@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.cloudcontact.cloudcontact.ContactHandler.ContactTab.ContactTabFragment;
+import com.cloudcontact.cloudcontact.ContactHandler.GroupTab.GroupTabFragment;
 import com.cloudcontact.cloudcontact.R;
 
 import it.neokree.materialtabs.MaterialTab;
@@ -72,11 +74,11 @@ class TabAdaptor extends FragmentStatePagerAdapter {
         Fragment tabFragment = null;
         switch (i) {
             case 0: {
-                tabFragment = new ContactTab();
+                tabFragment = new ContactTabFragment();
                 break;
             }
             case 1: {
-                tabFragment = new GroupTab();
+                tabFragment = new GroupTabFragment();
                 break;
             }
         }
@@ -93,11 +95,11 @@ class TabAdaptor extends FragmentStatePagerAdapter {
         String routineTitle = null;
         switch (position) {
             case 0: {
-                routineTitle = "Contact";
+                routineTitle = "All Contacts";
                 break;
             }
             case 1: {
-                routineTitle = "Group";
+                routineTitle = "Groups";
                 break;
             }
         }
