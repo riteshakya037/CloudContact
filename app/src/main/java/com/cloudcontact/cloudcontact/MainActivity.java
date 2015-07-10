@@ -3,16 +3,10 @@ package com.cloudcontact.cloudcontact;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.Toast;
 
 import com.cloudcontact.cloudcontact.BottomSheet.BottomSheet;
@@ -76,10 +70,10 @@ public class MainActivity extends ActionBarActivity implements BottomSheetCallba
 
     @Override
     public void showBottomSheet(ParseRow parseRow) {
-        if (bottomSheet == null)
+        if (bottomSheet == null || !bottomSheet.isShowing()) {
             bottomSheet = new BottomSheet(this, parseRow);
-        else if (!bottomSheet.isShowing())
             bottomSheet.show();
+        }
     }
 
 
