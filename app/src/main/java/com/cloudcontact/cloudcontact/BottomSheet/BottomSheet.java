@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.cloudcontact.cloudcontact.Parse.ParseRow;
@@ -24,6 +25,7 @@ public class BottomSheet extends Dialog {
     BottomSheetAdaptor bottomSheetAdaptor;
     ParseRow parseRow;
     TextView title;
+    Button add_to_contact_btn;
 
     public BottomSheet(Context context, ParseRow parseRow) {
         super(context, R.style.BottomSheet_Dialog);
@@ -46,11 +48,15 @@ public class BottomSheet extends Dialog {
         setContentView(R.layout.slide_out_menu);
         recyclerView = (RecyclerView) findViewById(R.id.slideOutMenu);
         title = (TextView) findViewById(R.id.bottomSheetTitleName);
+        add_to_contact_btn = (Button) findViewById(R.id.add_to_contacts_btn);
+
         initialize(parseRow);
+
     }
 
+
     public void initialize(ParseRow parseRow) {
-        bottomSheetAdaptor = new BottomSheetAdaptor(getContext(), parseRow, title);
+        bottomSheetAdaptor = new BottomSheetAdaptor(getContext(), parseRow, title, add_to_contact_btn);
         recyclerView.setAdapter(bottomSheetAdaptor);
         recyclerView.setLayoutManager(new MyLinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
     }
