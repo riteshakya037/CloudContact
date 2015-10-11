@@ -19,6 +19,7 @@ import java.util.ArrayList;
  */
 public class GroupListDisplay extends RecyclerView.Adapter<GroupListDisplay.ContactsViewHolder> {
     private final LayoutInflater inflator;
+    private final String filler = "";
     ArrayList<ParseRow> cardList;
     Context context;
 
@@ -27,7 +28,7 @@ public class GroupListDisplay extends RecyclerView.Adapter<GroupListDisplay.Cont
         inflator = LayoutInflater.from(context);
         cardList = new ArrayList<>();
         ParseHandler parseHandler = new ParseHandler();
-        cardList = parseHandler.getObjects(context, this, ContactTable.NAME.getFieldName());
+        cardList = parseHandler.getObjects(context, this, ContactTable.NAME.getFieldName(), filler);
     }
 
     @Override

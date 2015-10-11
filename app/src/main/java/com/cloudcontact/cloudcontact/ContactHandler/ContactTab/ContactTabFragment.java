@@ -9,13 +9,19 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cloudcontact.cloudcontact.FastScroller.FastScroller;
+import com.cloudcontact.cloudcontact.Parse.ContactTable;
+import com.cloudcontact.cloudcontact.Parse.ParseHandler;
+import com.cloudcontact.cloudcontact.Parse.ParseRow;
 import com.cloudcontact.cloudcontact.R;
+
+import java.util.ArrayList;
 
 
 public class ContactTabFragment extends Fragment {
     RecyclerView recyclerView;
     ContactListDisplay displayAdapter;
     FastScroller fastScroller;
+    private String filter="";
 
     /**
      * This is a method for Fragment.
@@ -27,7 +33,7 @@ public class ContactTabFragment extends Fragment {
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.contact_tab, container, false);
         recyclerView = (RecyclerView) layout.findViewById(R.id.contactList);
-        displayAdapter = new ContactListDisplay(getActivity());
+        displayAdapter = new ContactListDisplay(getActivity(), filter);
         recyclerView.setAdapter(displayAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         fastScroller = (FastScroller) layout.findViewById(R.id.fastscroller);
@@ -40,6 +46,5 @@ public class ContactTabFragment extends Fragment {
         // TODO Auto-generated method stub
         super.onActivityCreated(savedInstanceState);
     }
-
 
 }

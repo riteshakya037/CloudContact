@@ -17,6 +17,7 @@ import com.cloudcontact.cloudcontact.Parse.ParseRow;
 import com.cloudcontact.cloudcontact.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by shwshrestha on 7/3/15.
@@ -27,13 +28,13 @@ public class ContactListDisplay extends RecyclerView.Adapter<ContactListDisplay.
     Context context;
     BottomSheetCallback callback;
 
-    ContactListDisplay(final Context context) {
+    ContactListDisplay(final Context context, String filter) {
         this.context = context;
-        this.callback=((BottomSheetCallback)context);
+        this.callback = ((BottomSheetCallback) context);
         inflator = LayoutInflater.from(context);
         cardList = new ArrayList<>();
         ParseHandler parseHandler = new ParseHandler();
-        cardList = parseHandler.getObjects(context, this, ContactTable.NAME.getFieldName());
+        cardList = parseHandler.getObjects(context, this, ContactTable.NAME.getFieldName(), filter);
     }
 
     @Override

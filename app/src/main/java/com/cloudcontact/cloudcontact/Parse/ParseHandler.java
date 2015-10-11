@@ -23,7 +23,7 @@ public class ParseHandler {
     public static String client_id = "FEsgiSRzTevjX8FVI9LltRDGrE6qEzQJl4BKXJ6m";
 
 
-    public ArrayList<ParseRow> getObjects(final Context c, final RecyclerView.Adapter listDisplay, String sortField) {
+    public ArrayList<ParseRow> getObjects(final Context c, final RecyclerView.Adapter listDisplay, String sortField, final String filterString) {
         final ArrayList<ParseRow> list = new ArrayList<>();
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Contacts");
         query.orderByAscending(sortField);
@@ -35,19 +35,21 @@ public class ParseHandler {
                                        if (e == null) {
                                            list.clear();
                                            for (ParseObject post : parseObjects) {
-                                               ParseRow note = new ParseRow(
-                                                       post.getString(String.valueOf(ContactTable.CREATED_AT.getFieldName())),
-                                                       post.getString(String.valueOf(ContactTable.CURRENT_ADDRESS.getFieldName())),
-                                                       post.getString(String.valueOf(ContactTable.EMAIL.getFieldName())),
-                                                       post.getString(String.valueOf(ContactTable.EMERGENCY_NO.getFieldName())),
-                                                       post.getString(String.valueOf(ContactTable.HOME_NO.getFieldName())),
-                                                       post.getString(String.valueOf(ContactTable.NAME.getFieldName())),
-                                                       post.getString(String.valueOf(ContactTable.OBJECT_ID.getFieldName())),
-                                                       post.getString(String.valueOf(ContactTable.PERMANENT_ADDRESS.getFieldName())),
-                                                       post.getString(String.valueOf(ContactTable.PERSONAL_EMAIL.getFieldName())),
-                                                       post.getString(String.valueOf(ContactTable.PHONE_NO.getFieldName())),
-                                                       post.getString(String.valueOf(ContactTable.UPDATED_AT.getFieldName())));
-                                               list.add(note);
+                                               if (filterString == null || post.getString(String.valueOf(ContactTable.NAME.getFieldName())).contains(filterString)) {
+                                                   ParseRow note = new ParseRow(
+                                                           post.getString(String.valueOf(ContactTable.CREATED_AT.getFieldName())),
+                                                           post.getString(String.valueOf(ContactTable.CURRENT_ADDRESS.getFieldName())),
+                                                           post.getString(String.valueOf(ContactTable.EMAIL.getFieldName())),
+                                                           post.getString(String.valueOf(ContactTable.EMERGENCY_NO.getFieldName())),
+                                                           post.getString(String.valueOf(ContactTable.HOME_NO.getFieldName())),
+                                                           post.getString(String.valueOf(ContactTable.NAME.getFieldName())),
+                                                           post.getString(String.valueOf(ContactTable.OBJECT_ID.getFieldName())),
+                                                           post.getString(String.valueOf(ContactTable.PERMANENT_ADDRESS.getFieldName())),
+                                                           post.getString(String.valueOf(ContactTable.PERSONAL_EMAIL.getFieldName())),
+                                                           post.getString(String.valueOf(ContactTable.PHONE_NO.getFieldName())),
+                                                           post.getString(String.valueOf(ContactTable.UPDATED_AT.getFieldName())));
+                                                   list.add(note);
+                                               }
                                            }
                                            Collections.sort(list, new Comparator<ParseRow>() {
                                                @Override
