@@ -35,7 +35,7 @@ public class ParseHandler {
                                        if (e == null) {
                                            list.clear();
                                            for (ParseObject post : parseObjects) {
-                                               if (filterString == null || post.getString(String.valueOf(ContactTable.NAME.getFieldName())).contains(filterString)) {
+                                               if (filterString == null || post.getString(String.valueOf(ContactTable.NAME.getFieldName())).toUpperCase().contains(filterString.toUpperCase())) {
                                                    ParseRow note = new ParseRow(
                                                            post.getString(String.valueOf(ContactTable.CREATED_AT.getFieldName())),
                                                            post.getString(String.valueOf(ContactTable.CURRENT_ADDRESS.getFieldName())),

@@ -18,7 +18,7 @@ import com.cloudcontact.cloudcontact.BottomSheet.BottomSheetCallback;
 import com.cloudcontact.cloudcontact.ContactHandler.ContactFragment;
 import com.cloudcontact.cloudcontact.Parse.ParseRow;
 
-public class MainActivity extends AppCompatActivity implements BottomSheetCallback, SearchView.OnQueryTextListener {
+public class MainActivity extends AppCompatActivity implements BottomSheetCallback {
     Toolbar toolbar;
     private ContactFragment contactFragment;
     View fragContainer;
@@ -39,30 +39,6 @@ public class MainActivity extends AppCompatActivity implements BottomSheetCallba
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragContainer, contactFragment, "Contact").setTransition(FragmentTransaction.TRANSIT_ENTER_MASK)
                 .commit();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-
-        final MenuItem item = menu.findItem(R.id.action_search);
-        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
-        searchView.setOnQueryTextListener(this);
-        return true;
-    }
-
-
-    @Override
-    public boolean onQueryTextChange(String query) {
-        // Here is where we are going to implement our filter logic
-        Toast.makeText(this, query, Toast.LENGTH_SHORT).show();
-        return false;
-    }
-
-    @Override
-    public boolean onQueryTextSubmit(String query) {
-        return false;
     }
 
     @Override

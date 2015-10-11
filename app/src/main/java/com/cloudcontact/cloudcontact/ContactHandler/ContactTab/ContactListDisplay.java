@@ -27,13 +27,18 @@ public class ContactListDisplay extends RecyclerView.Adapter<ContactListDisplay.
     ArrayList<ParseRow> cardList;
     Context context;
     BottomSheetCallback callback;
+    ParseHandler parseHandler;
 
-    ContactListDisplay(final Context context, String filter) {
+    ContactListDisplay(final Context context) {
         this.context = context;
         this.callback = ((BottomSheetCallback) context);
         inflator = LayoutInflater.from(context);
         cardList = new ArrayList<>();
-        ParseHandler parseHandler = new ParseHandler();
+        parseHandler = new ParseHandler();
+        getData("");
+    }
+
+    protected void getData(String filter) {
         cardList = parseHandler.getObjects(context, this, ContactTable.NAME.getFieldName(), filter);
     }
 
