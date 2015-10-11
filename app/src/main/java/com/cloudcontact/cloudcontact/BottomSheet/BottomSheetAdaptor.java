@@ -6,11 +6,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.provider.ContactsContract;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -30,7 +32,7 @@ public class BottomSheetAdaptor extends RecyclerView.Adapter<BottomSheetAdaptor.
     ArrayList<HashMapArray> bottomSheetList;
     Context context;
 
-    BottomSheetAdaptor(final Context context, final ParseRow parseRow, TextView title, Button add_to_contact_btn) {
+    BottomSheetAdaptor(final Context context, final ParseRow parseRow, TextView title, FloatingActionButton add_to_contact_btn) {
         this.context = context;
         inflator = LayoutInflater.from(context);
         bottomSheetList = new ArrayList<>();
@@ -47,7 +49,7 @@ public class BottomSheetAdaptor extends RecyclerView.Adapter<BottomSheetAdaptor.
                 String company = "Deerwalk Inc.";
                 String jobTitle = "";
 
-                ArrayList <ContentProviderOperation> ops = new ArrayList< ContentProviderOperation >();
+                ArrayList<ContentProviderOperation> ops = new ArrayList<ContentProviderOperation>();
 
                 ops.add(ContentProviderOperation.newInsert(
                         ContactsContract.RawContacts.CONTENT_URI)

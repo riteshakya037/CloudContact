@@ -3,6 +3,7 @@ package com.cloudcontact.cloudcontact.BottomSheet;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Display;
@@ -11,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.cloudcontact.cloudcontact.Parse.ParseRow;
@@ -25,7 +25,8 @@ public class BottomSheet extends Dialog {
     BottomSheetAdaptor bottomSheetAdaptor;
     ParseRow parseRow;
     TextView title;
-    Button add_to_contact_btn;
+    FloatingActionButton add_to_contact_btn;
+    public View layoutFiller; // padding should dismiss dialog
 
     public BottomSheet(Context context, ParseRow parseRow) {
         super(context, R.style.BottomSheet_Dialog);
@@ -44,11 +45,11 @@ public class BottomSheet extends Dialog {
         getWindow().setAttributes(params);
         setCanceledOnTouchOutside(true);
         //-------------------------END-------------------------------------/
-
         setContentView(R.layout.slide_out_menu);
+        layoutFiller = findViewById(R.id.layoutPadding);
         recyclerView = (RecyclerView) findViewById(R.id.slideOutMenu);
         title = (TextView) findViewById(R.id.bottomSheetTitleName);
-        add_to_contact_btn = (Button) findViewById(R.id.add_to_contacts_btn);
+        add_to_contact_btn = (FloatingActionButton) findViewById(R.id.add_to_contacts_btn);
 
         initialize(parseRow);
 

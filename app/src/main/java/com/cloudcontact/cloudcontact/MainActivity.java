@@ -73,6 +73,12 @@ public class MainActivity extends ActionBarActivity implements BottomSheetCallba
         if (bottomSheet == null || !bottomSheet.isShowing()) {
             bottomSheet = new BottomSheet(this, parseRow);
             bottomSheet.show();
+            bottomSheet.layoutFiller.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    bottomSheet.dismiss();
+                }
+            });
         }
     }
 

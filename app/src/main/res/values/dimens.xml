@@ -3,5 +3,6 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_scroll_threshold">4dp</dimen>
-
+    <dimen name="button_elevation">2dp</dimen>
+    <dimen name="button_press_elevation">4dp</dimen>
 </resources>
